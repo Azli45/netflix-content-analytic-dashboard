@@ -2,7 +2,8 @@
 
 An interactive Power BI dashboard analyzing Netflix's content library — built from scratch, self-taught, with real data cleaning and debugging along the way.
 
-![Dashboard Preview](dashboard-preview.png)
+![Dashboard Preview](![Uploading Screenshot.png…]()
+)
 <!-- Replace dashboard-preview.png with your actual screenshot filename in the repo -->
 
 ---
