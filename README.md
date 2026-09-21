@@ -1,73 +1,51 @@
-# 📊 Netflix Content Analytics Dashboard
+# Netflix Content Analytics Dashboard
 
-An interactive Power BI dashboard analyzing Netflix's content library — built from scratch, self-taught, with real data cleaning and debugging along the way.
+An interactive Power BI dashboard I built to explore Netflix's content library — genres, ratings, release trends, and how the platform's catalog has grown over time.
 
-![Dashboard Preview](![Uploading Screenshot.png…]()
-)
-<!-- Replace dashboard-preview.png with your actual screenshot filename in the repo -->
+![Uploading Screenshot.png…]()
 
----
 
-## 📌 Overview
+## About this project
 
-This project explores Netflix's content catalog to understand what's on the platform, how it's distributed, and how it has evolved over time. The dashboard turns a raw, messy CSV dataset into a clean, interactive story covering content type, genre popularity, release trends, and platform growth.
+I wanted to go beyond just following a tutorial, so I picked a dataset I actually find interesting (Netflix's full title catalog, ~8,800 movies and shows) and built the whole thing myself — no course, no template, just Power BI, Power Query, and a lot of Googling when something broke.
 
-## 🎯 Business Problem
+The dashboard looks at things like:
+- What's the actual mix of Movies vs TV Shows on the platform?
+- Which genres show up the most?
+- How has the number of titles released changed by year?
+- How fast has Netflix been adding new content to the platform over time?
 
-Streaming platforms sit on massive content libraries that are hard to make sense of at a glance. This dashboard answers questions like:
-- What does Netflix's content mix look like — Movies vs TV Shows?
-- Which genres dominate the catalog?
-- How has content released and added to the platform trended over time?
-- Where is content quality/rating distributed across the library?
+## The dataset
 
-## 🗂️ Dataset
+Standard public Netflix Titles dataset, 8,809 rows, with columns like `type`, `title`, `director`, `country`, `release_year`, `rating`, `duration`, and `listed_in`.
 
-- **Source:** Netflix Titles dataset (public dataset, 8,809 rows)
-- **Columns used:** `type`, `title`, `director`, `cast`, `country`, `date_added`, `release_year`, `rating`, `duration`, `listed_in`
+It's not clean out of the box, and honestly, dealing with that was most of the actual work:
+- A bunch of missing values in `director`, `cast`, and `country` that needed handling instead of just ignoring
+- One row had a director's name sitting in the `type` column instead of "Movie"/"TV Show" — turned out to be a comma-parsing issue from the original CSV shifting values into the wrong columns. Found it, tracked it down, filtered it out.
+- Genres and countries are comma-separated in a single cell, so I pulled out the primary genre/country into their own columns to make them usable in charts.
+- Had to fix some axis formatting that was displaying years as rounded thousands ("2.0K" instead of "2020") — small thing, but it made the whole trend chart unreadable until I caught it.
 
-### Data Cleaning Performed
-Real-world messy data required real fixes, not just chart-building:
-- Trimmed and cleaned whitespace/non-printable characters across text columns (`director`, `cast`, `country`, `listed_in`, `rating`) using Power Query.
-- Identified and removed a data corruption bug — a row had its `type` column populated with a director's name (`William Wyler`) instead of "Movie"/"TV Show," caused by a comma-parsing shift in the source CSV. Filtered this out via Power Query's column filter.
-- Split multi-value fields (comma-separated genres and countries) into usable single values via calculated columns (`Primary Genre`, `Primary Country`).
-- Fixed axis formatting issues (thousands-unit display distorting year values on time-series charts).
+## What's on the dashboard
 
-## 📈 Dashboard Features
+- KPI cards up top: total titles, directors, genres, movies, TV shows
+- A genre bar chart showing what's most common in the catalog
+- A donut chart for the Movies vs TV Shows split
+- A trend chart of titles by release year
+- A second trend chart tracking how fast content gets *added* to Netflix over time — different from release year, more about platform growth
+- Slicers for type, rating, and country, with cross-filtering across every visual
 
-**KPI Cards**
-- Total Titles
-- Total Directors
-- Total Genres
-- Total Movies
-- Total TV Shows
+## Tools
 
-**Visuals**
-| Visual | Insight |
-|---|---|
-| Genre bar chart | Most popular genres by total title count |
-| Donut chart | Movies vs TV Shows split |
-| Area/line chart | Content trend by release year |
-| Line chart | Titles added to Netflix over time (platform acquisition pace) |
+Power BI, Power Query (M), DAX
 
-**Interactivity**
-- Slicers for `Type`, `Rating`, and `Country`
-- Cross-filtering enabled across all visuals — clicking any chart filters the rest of the dashboard
+## What I actually learned
 
-## 🛠️ Tools & Skills Used
+The dashboard part was honestly the easy half. The real learning was in the debugging — figuring out why a legend was pulling in the wrong field, why a map visual wouldn't geocode, why one row was breaking a whole chart. None of that shows up in a course; you only run into it by building something real and fixing it yourself.
 
-- **Power BI** — dashboard design & interactivity
-- **Power Query (M)** — data cleaning, trimming, filtering, column splitting
-- **DAX** — calculated measures and columns (`COUNTROWS`, `DISTINCTCOUNT`, `CALCULATE`, `IF`)
-- **Data Visualization & Storytelling**
+## License
 
-## 💡 Key Learnings
+MIT — see [LICENSE](LICENSE)
 
-Building this end-to-end — not just following a tutorial — surfaced real issues that don't show up in guided courses: shifted/corrupted data rows, misconfigured legends pulling in the wrong fields, axis formatting quirks, and map visuals requiring workarounds. Debugging each of these myself was where most of the actual learning happened.
+## Author
 
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Azli Khan**
+Azli Khan
