@@ -2,9 +2,6 @@
 
 An interactive Power BI dashboard I built to explore Netflix's content library — genres, ratings, release trends, and how the platform's catalog has grown over time.
 
-![Uploading Screenshot.png…]()
-
-
 ## About this project
 
 I wanted to go beyond just following a tutorial, so I picked a dataset I actually find interesting (Netflix's full title catalog, ~8,800 movies and shows) and built the whole thing myself — no course, no template, just Power BI, Power Query, and a lot of Googling when something broke.
